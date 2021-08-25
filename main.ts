@@ -68,3 +68,11 @@ forever(function () {
         MyPlayer.setImage(assets.image`Player-NoWings`)
     }
 })
+forever(function () {
+    if (MyPlayer.y == 152) {
+        game.over(false)
+    }
+    if (MyPlayer.y == 8) {
+        game.over(false)
+    }
+})
