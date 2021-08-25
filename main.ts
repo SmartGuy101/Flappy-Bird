@@ -13,7 +13,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    MyPlayer.vy = -60
+    MyPlayer.vy = -200
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     MyPlayer.vy = -60
@@ -70,7 +70,7 @@ MyPlayer = sprites.create(assets.image`Player-Wings`, SpriteKind.Player)
 EndSprite = sprites.create(assets.image`End-Mouth-Open`, SpriteKind.End)
 MyPlayer.setPosition(0, 60)
 tiles.placeOnTile(EndSprite, tiles.getTileLocation(98, 5))
-MyPlayer.ay = 100
+MyPlayer.ay = 300
 MyPlayer.vx = 70
 scene.cameraFollowSprite(MyPlayer)
 forever(function () {
