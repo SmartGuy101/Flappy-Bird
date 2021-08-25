@@ -2,9 +2,6 @@ namespace SpriteKind {
     export const Background = SpriteKind.create()
     export const End = SpriteKind.create()
 }
-controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    MyPlayer.vy = -60
-})
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Wings) {
         Wings = false
@@ -12,23 +9,14 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         Wings = true
     }
 })
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    MyPlayer.vy = -200
-})
-controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    MyPlayer.vy = -60
+controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
+    MyPlayer.vy = -100
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.End, function (sprite, otherSprite) {
     EndSprite.setImage(assets.image`End-Mouth-Closed`)
     MyPlayer.destroy(effects.fountain, 100)
     pause(1000)
     game.over(true)
-})
-controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    MyPlayer.vy = -60
-})
-controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
-    MyPlayer.vy = -60
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Lava`, function (sprite, location) {
     game.over(false)
