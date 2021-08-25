@@ -2,7 +2,8 @@
     "name": "Flappy Bird",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "arcade-sprite-util": "github:jwunderl/arcade-sprite-util#v0.2.4"
     },
     "files": [
         "main.blocks",

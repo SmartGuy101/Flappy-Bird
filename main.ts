@@ -1,5 +1,6 @@
 namespace SpriteKind {
     export const Background = SpriteKind.create()
+    export const End = SpriteKind.create()
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     MyPlayer.vy = -60
@@ -17,6 +18,12 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     MyPlayer.vy = -60
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.End, function (sprite, otherSprite) {
+    EndSprite.setImage(assets.image`End-Mouth-Closed`)
+    MyPlayer.destroy(effects.fountain, 100)
+    pause(1000)
+    game.over(true)
+})
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     MyPlayer.vy = -60
 })
@@ -26,6 +33,7 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Lava`, function (sprite, location) {
     game.over(false)
 })
+let EndSprite: Sprite = null
 let MyPlayer: Sprite = null
 let Wings = false
 tiles.setTilemap(tilemap`level1`)
@@ -59,7 +67,9 @@ game.setDialogFrame(img`
     `)
 game.showLongText("Press \"b\" to enable/disable wings", DialogLayout.Full)
 MyPlayer = sprites.create(assets.image`Player-Wings`, SpriteKind.Player)
-let mySprite = sprites.create(assets.image`End-Mouth-Open`, SpriteKind.Player)
+EndSprite = sprites.create(assets.image`End-Mouth-Open`, SpriteKind.End)
+MyPlayer.setPosition(0, 60)
+tiles.placeOnTile(EndSprite, tiles.getTileLocation(98, 5))
 MyPlayer.ay = 100
 MyPlayer.vx = 70
 scene.cameraFollowSprite(MyPlayer)
